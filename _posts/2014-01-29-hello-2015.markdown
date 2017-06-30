@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Welcome to Hux Blog"
+title:      "Welcome to NL Blog"
 subtitle:   " \"Hello World, Hello Blog\""
 date:       2015-01-29 12:00:00
 author:     "NL"
@@ -14,7 +14,7 @@ tags:
 
 ## 前言
 
-Hux 的 Blog 就这么开通了。
+NL 的 Blog 就这么开通了。
 
 [跳过废话，直接看技术实现 ](#build)
 
