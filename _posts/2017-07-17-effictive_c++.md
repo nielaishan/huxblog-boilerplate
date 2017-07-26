@@ -118,22 +118,22 @@ tags:
 9. 条款9: 绝不在构造和析构过程中调用virtual函数。
 
    > 在构造和析构期间不要调用virtual函数，因为这类调用从不下降至derived class。
+   >
+   > ​
 
-10. 条款10: 令operator=返回一个reference to *this.
+10. 条款10: 令operator=返回一个reference to *this。
 
- > ```c++
- > int x, y, z;
- > x=y=z=5; //赋值连锁形式
- > //为了实现对象的连锁赋值， 赋值操作符必须返回一个reference指向操作符的左侧实参。
- > class Widget {
- >   public:
- >   Widget& operator=(const Widget& rhs) { //返回类型是个reference
- >     return *this;  //返回左侧对象
- >   }
- > }
- > ```
- >
-
+  > ```c++
+  > int x, y, z;
+  > x=y=z=5; //赋值连锁形式
+  > //为了实现对象的连锁赋值， 赋值操作符必须返回一个reference指向操作符的左侧实参。
+  > class Widget {
+  >   public:
+  >   Widget& operator=(const Widget& rhs) { //返回类型是个reference
+  >     return *this;  //返回左侧对象
+  >   }
+  > }
+  > ```
 
 
 11. 条款11: 令operator=中处理“自我赋值”
