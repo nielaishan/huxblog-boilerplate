@@ -1,7 +1,7 @@
 ---
 layout:   post
 title:    "spring框架及其spring boot学习"
-subtitle: "spring"
+subtitle: “spring”
 date:     2017-10-13
 author:   "NL"
 header-img: "img/post-bg-2015.jpg"
@@ -701,20 +701,27 @@ tags:
     >
     > 11. @EnableAspectJAutoProxy:AspectJ的注解
     >
-    > 12. @Aspect:注解需要配合@Component注解使用，表示一个切面
+    > 12. @EnableAutoConfiguration表示让Spring Boot根据类路径中的jar包依赖为当前项目进行自动配置。
     >
-    > 13. @Pointcut:注解的方法返回值必须是void
+    > 13. @RequestMapping:提供路由信息，他告诉spring任何来自“/”路径的HTTP请求都应该被映射到home方法
+    >
+    > 14. @RestController：告诉spring以字符串的形式渲染结果，并直接返回给调用者。
+    >
+    > 15. @Aspect:注解需要配合@Component注解使用，表示一个切面
+    >
+    > 16. @Pointcut:注解的方法返回值必须是void
 
 14. service层处理业务逻辑，Dao数据库有关
 
 15. AOP：面向切面编程。日志处理、事务处理、安全验证
 
     > 1. 实现方式：预编译：AspectJ、运行期动态代理：SpringAOP
+    > 2. 切面，切点，根据切点来执行方法
 
 16. spring事务管理
 
     > 1. 事务的特性：
-    >    1. 原子性：事务中的操作要么全发生，要么全部发生
+    >    1. 原子性：事务中的操作要么全发生，要么全不发生
     >    2. 一致性：事务前后的数据完整性必须保持一致
     >    3. 隔离性：多个用户并发访问数据库时，一个用户的事务不能被其它用户的事务干扰，多个并发事务之间数据要相互隔离
     >    4. 持久性：一旦一个事务被提交，他对数据库中数据的改变时永久性的。
@@ -722,3 +729,62 @@ tags:
     >    1. 事务管理器：PlatformTransactionManager
     >    2. 事务定义信息：TransactionDefinition
     >    3. 事务具体运行状态：TransactionStatus
+
+
+
+Spring MVC的核心思想：业务数据抽取同业务数据呈现相分离。
+
+### Spring MVC 拦截器：
+
+1. 通过统一拦截从浏览器发往服务器的请求来完成功能的增强
+2. 使用场景：解决请求的共性问题
+3. 方法：
+   1. preHandle是否拦截
+   2. postHandle改变视图，或者发往视图的方法
+   3. afterHandle响应之后的操作
+
+拦截器与过滤器的区别
+
+**①拦截器是基于java的反射机制的，而过滤器是基于函数回调。　　**
+
+**②拦截器不依赖与servlet容器，过滤器依赖与servlet容器。　　**
+
+**③拦截器只能对action请求起作用，而过滤器则可以对几乎所有的请求起作用。　　**
+
+**④拦截器可以访问action上下文、值栈里的对象，而过滤器不能访问。　　**
+
+**⑤在action的生命周期中，拦截器可以多次被调用，而过滤器只能在容器初始化时被调用一次。**
+
+**⑥拦截器可以获取IOC容器中的各个bean，而过滤器就不行，这点很重要，在拦截器里注入一个service，可以调用业务逻辑。**
+
+
+
+### 过滤器 Filter
+
+1. 定义：是一个服务器端的组件，他可以截取用户端的请求与响应信息，并对这些信息过滤。
+2. 工作原理：启动web容器时，过滤器就开始运作，用户端的请求先通过过滤器进行判断是否合理，之后交给服务器的web资源进行处理；资源响应发送至过滤器，过滤器在判断，过滤器将web资源额响应发送给用户
+3. 生命周期：实例化（web.xml）、初始化（init（））、过滤（doFilter（））、销毁（destroy（））。
+4. 配置实现。
+
+
+
+
+
+### JavaEE个人理解
+
+1. servlet配置，servlet中页面的跳转
+2. tomcat将jsp转换为servlet，加入servlet容器中。
+
+
+
+### Mybatis
+
+1. 获得sqlSession:
+   1. 通过配置文件获取数据库连接相关信息
+   2. 通过配置信息构建SqlSessionFactory
+   3. 通过SqlSessionFactory打开数据会话sqlSession
+
+
+
+
+
