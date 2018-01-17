@@ -145,77 +145,73 @@ public class ProductionConfiguration {
              	<!--帮助监控和管理应用-->
    			<artifactId>spring-boot-starter-actuator</artifactId>
    		</dependency>
+         <dependency>
+        <!-- mybatis-spring-boot-starter依赖的作用：只需要定义一个DataSource即可，它会自动创建使用该DataSource的SqlSessionFactoryBean以及SqlSessionTemplate。会自动扫描你的Mappers，连接到SqlSessionTemplate，并注册到Spring上下文中。 -->
+        <groupId>org.mybatis.spring.boot</groupId>
+      			<artifactId>mybatis-spring-boot-starter</artifactId>
+      			<version>1.1.1</version>
+      		</dependency>
+            
+      		<!-- 添加mybatis的核心包 -->
+      		<dependency>
+      			<groupId>org.mybatis</groupId>
+      			<artifactId>mybatis</artifactId>
+      			<version>3.4.1</version>
+      		</dependency>
+      		<!-- 添加mybatis与Spring整合的核心包 -->
+      		<dependency>
+      			<groupId>org.mybatis</groupId>
+      			<artifactId>mybatis-spring</artifactId>
+      			<version>1.3.0</version>
+      		</dependency>
+      		<!--lombok插件依赖，@Data，设置seter，geter函数-->
+      		<dependency>
+      			<groupId>org.projectlombok</groupId>
+      			<artifactId>lombok</artifactId>
+      			<version>${lombok.version}</version>
+      		</dependency>
+      		<!-- 添加mysql驱动包 -->
+      		<dependency>
+      			<groupId>mysql</groupId>
+      			<artifactId>mysql-connector-java</artifactId>
+      		</dependency>
+      		<!-- 添加druid连接池包，主要是为了提高数据库操作性能 -->
+      		<dependency>
+      			<groupId>com.alibaba</groupId>
+      			<artifactId>druid</artifactId>
+      			<version>1.0.18</version>
+      		</dependency>
+      		<!-- 添加servlet3.0核心包 -->
+      		<dependency>
+      			<groupId>javax.servlet</groupId>
+      			<artifactId>javax.servlet-api</artifactId>
+      			<scope>provided</scope>
+      		</dependency>
+      	</dependencies>
 
+      	<!--构建项目需要的信息-->
+      	<build>
+         <plugins>
+      			<plugin>
+      				<groupId>org.springframework.boot</groupId>
+      				<artifactId>spring-boot-maven-plugin</artifactId>
+      			</plugin>
+      		</plugins>
+      	</build>
+      </project>
 
-   		<dependency>
-             	<!-- mybatis-spring-boot-starter依赖的作用：只需要定义一个DataSource即可，它会自动创建使用该DataSource的SqlSessionFactoryBean以及SqlSessionTemplate。会自动扫描你的Mappers，连接到SqlSessionTemplate，并注册到Spring上下文中。 -->
-   			<groupId>org.mybatis.spring.boot</groupId>
-   			<artifactId>mybatis-spring-boot-starter</artifactId>
-   			<version>1.1.1</version>
-   		</dependency>
-         
-   		<!-- 添加mybatis的核心包 -->
-   		<dependency>
-   			<groupId>org.mybatis</groupId>
-   			<artifactId>mybatis</artifactId>
-   			<version>3.4.1</version>
-   		</dependency>
-   		<!-- 添加mybatis与Spring整合的核心包 -->
-   		<dependency>
-   			<groupId>org.mybatis</groupId>
-   			<artifactId>mybatis-spring</artifactId>
-   			<version>1.3.0</version>
-   		</dependency>
-   		<!--lombok插件依赖，@Data，设置seter，geter函数-->
-   		<dependency>
-   			<groupId>org.projectlombok</groupId>
-   			<artifactId>lombok</artifactId>
-   			<version>${lombok.version}</version>
-   		</dependency>
-   		<!-- 添加mysql驱动包 -->
-   		<dependency>
-   			<groupId>mysql</groupId>
-   			<artifactId>mysql-connector-java</artifactId>
-   		</dependency>
-   		<!-- 添加druid连接池包，主要是为了提高数据库操作性能 -->
-   		<dependency>
-   			<groupId>com.alibaba</groupId>
-   			<artifactId>druid</artifactId>
-   			<version>1.0.18</version>
-   		</dependency>
-   		<!-- 添加servlet3.0核心包 -->
-   		<dependency>
-   			<groupId>javax.servlet</groupId>
-   			<artifactId>javax.servlet-api</artifactId>
-   			<scope>provided</scope>
-   		</dependency>
-   	</dependencies>
+   <!--2. application.properties文件配置 -->
 
-   	<!--构建项目需要的信息-->
-   	<build>
-         	<!--使用的插件列表--> 
-   		<plugins>
-   			<plugin>
-   				<groupId>org.springframework.boot</groupId>
-   				<artifactId>spring-boot-maven-plugin</artifactId>
-   			</plugin>
-   		</plugins>
-   	</build>
-   </project>
+      //主要是druid连接池的配置
+      jdbc.driver=com.mysql.jdbc.Driver
+      jdbc.url=jdbc:mysql://localhost:3306/newsreport?useUnicode=true&amp;characterEncoding=UTF-8
+      jdbc.username=root
+      jdbc.password=12345678
+      jdbc.pool.minIdle=0
+      jdbc.pool.maxIdle=10
+      jdbc.pool.maxActive=50
    ```
 
-2. application.properties文件配置
-
-   ```properties
-   //主要是druid连接池的配置
-   jdbc.driver=com.mysql.jdbc.Driver
-   jdbc.url=jdbc:mysql://localhost:3306/newsreport?useUnicode=true&amp;characterEncoding=UTF-8
-   jdbc.username=root
-   jdbc.password=12345678
-   jdbc.pool.minIdle=0
-   jdbc.pool.maxIdle=10
-   jdbc.pool.maxActive=50
-   ```
 
 3. Domain层
 

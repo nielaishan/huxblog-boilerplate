@@ -769,12 +769,10 @@ Spring MVC的核心思想：业务数据抽取同业务数据呈现相分离。
 
 
 
-
 ### JavaEE个人理解
 
 1. servlet配置，servlet中页面的跳转
 2. tomcat将jsp转换为servlet，加入servlet容器中。
-
 
 
 ### Mybatis
